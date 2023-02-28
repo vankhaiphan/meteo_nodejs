@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Méteo</title>
+</head>
+
+<body>
+    <form action="/" method="GET">
+        <input type="text" id="city" placeholder="ville">
+        <button type="submit" id="submit" onclick="searchCity(event)">Valider</button>
+    </form>
+    <div id="info">
+        {{#info}}
+        <div>
+            <h2 id="location">{{info.city}}, {{info.country}}</h2>
+        </div>
+        <div>
+            <img src="https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0018_cloudy_with_heavy_rain.png">
+        </div>
+        <ul>
+            <li id="wind_speed"> Vent:{{info.wind_speed}} </li>
+            <li id="temperature">Température: {{info.temperature}}</li>
+            <li id="temps"> Temps: {{info.weather_descriptions}}</li>
+        </ul>
+        {{/info}}
+    </div>
+    <script>
+        function searchCity(e) {
+            e.preventDefault();
+            //Element.preventDefault();
+            const city = document.getElementById("city").value;
+            const request = "http://127.0.0.1:3000/?city=" + city;
+            console.log(request);
+            fetch(request)
+            .then((res) => res.text())
+            .then((rendered) => {
+                document.getElementById('info').innerHTML = rendered;
+            })
+            document.getElementById("city").value = "";
+        };
+    </script>
+</body>
+
+</html>
