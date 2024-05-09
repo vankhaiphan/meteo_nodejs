@@ -16,7 +16,7 @@
     "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
     "mustache": "^4.2.0",
-    "nodemon": "^2.0.20",
+    "nodemon": "^3.1.0",
     "url": "^0.11.0"
   }
 }
